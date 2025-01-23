@@ -119,11 +119,13 @@ if user_menu == 'Country-wise Analysis':
     st.title('Medal Heatmap for '+select_country)
     if select_season == 'Summer':
         temp_df = summer_df[summer_df['region'] == select_country].dropna(subset=['Medal'])
+        temp_df.drop_duplicates(subset=['Team', 'NOC', 'Games', 'Year', 'City', 'Event', 'Sport', 'Medal'],inplace=True)
         fig, ax = plt.subplots(figsize=(20, 20))
         ax = sns.heatmap(temp_df.pivot_table(index='Sport', columns='Year', values='Medal', aggfunc='count').fillna(0).astype('int'),annot=True)
         st.pyplot(fig)
     else:
         temp_df = summer_df[summer_df['region'] == select_country].dropna(subset=['Medal'])
+        temp_df.drop_duplicates(subset=['Team', 'NOC', 'Games', 'Year', 'City', 'Event', 'Sport', 'Medal'],inplace=True)
         fig, ax = plt.subplots(figsize=(20, 20))
         ax = sns.heatmap(temp_df.pivot_table(index='Sport', columns='Year', values='Medal', aggfunc='count').fillna(0).astype('int'), annot=True)
         st.pyplot(fig)
