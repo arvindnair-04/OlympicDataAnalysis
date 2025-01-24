@@ -1,7 +1,4 @@
 import plotly.express as px
-from matplotlib import pyplot as plt
-import seaborn as sns
-import streamlit as st
 
 def get_values(df):
     games = df['Games'].unique().tolist()
